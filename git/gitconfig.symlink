@@ -4,13 +4,13 @@
 [hub]
         protocol = https
 [alias]
-        co = checkout
-        promote = !$ZSH/bin/git-promote
-        wtf     = !$ZSH/bin/git-wtf
-        rank-contributors = !$ZSH/bin/git-rank-contributors
-        count   = !git shortlog -sn
+	co = checkout
+	promote = !$ZSH/bin/git-promote
+	wtf     = !$ZSH/bin/git-wtf
+	rank-contributors = !$ZSH/bin/git-rank-contributors
+	count   = !git shortlog -sn
 
-        # from @jessfraz dotfiles
+	# from @jessfraz dotfiles
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
@@ -127,3 +127,5 @@
 	helper = osxkeychain
 [init]
 	defaultBranch = main
+[url "git@github.com:"]
+	insteadOf = https://github.com/
