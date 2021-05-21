@@ -45,7 +45,7 @@ brew_install screen
 brew_install git
 brew_install git-lfs
 brew_install ssh-copy-id
-brew_install pyenv
-brew_install nvm
+brew_install asdf
+brew_install starship
 
 exit 0
