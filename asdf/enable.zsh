@@ -1,1 +1,1 @@
-$(brew --prefix asdf)/asdf.sh
+echo -e "\n. $(brew --prefix asdf)/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
