@@ -1,1 +1,4 @@
-echo -e "\n. $(brew --prefix asdf)/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
+$ASDF_SH=$(brew --prefix asdf)/asdf.sh"
+if [ -f $ASDF_SH]; then
+    . $ASDF_SH
+fi
