@@ -1,0 +1,1 @@
+export VOLTA_HOME=${VOLTA_HOME:-~/.volta}

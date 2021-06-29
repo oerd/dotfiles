@@ -47,5 +47,5 @@ brew_install git-lfs
 brew_install ssh-copy-id
 brew_install asdf
 brew_install starship
-
+brew_install volta
 exit 0
