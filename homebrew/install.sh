@@ -52,4 +52,20 @@ brew_install asdf
 brew_install starship
 brew_install volta
 brew_install zsh
+brew_install ne
+
+# Install Casks
+brew install --cask brave-browser
+brew install --cask coconutbattery
+brew install --cask docker
+brew install --cask goland
+brew install --cask intellij-idea
+brew install --cask iterm2
+brew install --cask lastpass
+brew install --cask monitorcontrol
+brew install --cask pycharm
+brew install --cask rectangle
+brew install --cask slack
+brew install --cask sublime-text
+brew install --cask visual-studio-code
 exit 0
