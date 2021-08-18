@@ -68,4 +68,5 @@ brew install --cask rectangle
 brew install --cask slack
 brew install --cask sublime-text
 brew install --cask visual-studio-code
+brew install --cask postman
 exit 0
