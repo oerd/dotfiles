@@ -53,6 +53,7 @@ brew_install starship
 brew_install volta
 brew_install zsh
 brew_install ne
+brew_install jq
 
 # Install Casks
 brew install --cask brave-browser
