@@ -10,7 +10,7 @@ export PATH="$PATH:$HOME/.local/bin"
 
 export PYENV_SHELL=zsh
 PYENV_VER=$(pyenv --version | cut -d" " -f2)
-source "/usr/local/Cellar/pyenv/${PYENV_VER}/libexec/../completions/pyenv.zsh"
+source "${BREW_PREFIX}/Cellar/pyenv/${PYENV_VER}/libexec/../completions/pyenv.zsh"
 command pyenv rehash 2>/dev/null
 pyenv() {
   local command
