@@ -9,9 +9,6 @@ brew_install() {
   local command=$1
   local command_with_options=$@
 
-  echo "Command: $command"
-  echo "Command with options: $command_with_options"
-
   local result=$(which $command)
   if [ -z $result ]
   then
@@ -37,6 +34,7 @@ fi
 
 # Install `wget` with IRI support.
 brew_install wget
+brew_install fzf
 # Install GnuPG to enable PGP-signing commits.
 brew_install gnupg
 brew_install grep
@@ -49,11 +47,14 @@ brew_install ssh-copy-id
 brew_install pyenv
 brew_install pipx
 brew_install asdf
+brew_install neovim
 brew_install starship
 brew_install volta
 brew_install zsh
 brew_install ne
 brew_install jq
+brew_install yq
+
 
 # Install Casks
 brew install --cask brave-browser
@@ -63,9 +64,11 @@ brew install --cask goland
 brew install --cask intellij-idea
 brew install --cask iterm2
 brew install --cask lastpass
+brew install --cask 1password
 brew install --cask monitorcontrol
 brew install --cask pycharm
 brew install --cask rectangle
+brew install --cask meetingbar
 brew install --cask slack
 brew install --cask sublime-text
 brew install --cask visual-studio-code
