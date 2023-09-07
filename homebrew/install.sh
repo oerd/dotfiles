@@ -79,4 +79,6 @@ brew install --cask visual-studio-code
 brew install --cask postman
 brew install --cask zed
 
+mas install 882812218  #  Owly
+
 exit 0
