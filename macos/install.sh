@@ -10,3 +10,5 @@ fi
 
 echo "› sudo softwareupdate -i -a"
 sudo softwareupdate -i -a
+
+mas install 882812218  #  Owly
