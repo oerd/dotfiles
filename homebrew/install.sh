@@ -79,6 +79,14 @@ brew install --cask visual-studio-code
 brew install --cask postman
 brew install --cask zed
 
+## some common taps:
+brew tap homebrew/cask-fonts
+
+## install fonts
+brew install font-fira-mono-for-powerline
+brew install font-source-code-pro-for-powerline
+
+## install apps via the Mac App Store
 mas install 882812218  #  Owly
 
 exit 0
