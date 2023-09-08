@@ -73,6 +73,7 @@ brew install --cask monitorcontrol
 brew install --cask pycharm
 brew install --cask rectangle
 brew install --cask meetingbar
+brew install --cask secretive
 brew install --cask slack
 brew install --cask sublime-text
 brew install --cask visual-studio-code
