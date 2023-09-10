@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# Usage: clone <repository>
+# Description: Clones a Github repository in the project folder preserving <org>/<repo> structure
+#
+if [ $# -eq 0 ]; then
+  echo "Usage: clone <repository>"
+  exit 1
+fi
+
+REPO=$1
+ORG=$(echo $REPO | cut -d'/' -f1)
+PROJECT=$(echo $REPO | cut -d'/' -f2)
+
+if [ -d "$PROJECT" ]; then
+  echo "Project $PROJECT already exists"
+  exit 1
+fi
+
+mkdir -p $PROJECTS/$ORG
+
+git clone git@github.com:$REPO.git $PROJECTS/$ORG/$PROJECT
