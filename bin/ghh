@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+# Usage: gimdo <repository>
+# Description: Visits a Jimdo Github repository in the default browser
+#
+ghh () {
+    if ! $ORGANIZATION; then
+        echo "$0: Please set the ORGANIZATION environment variable"
+        return 1
+    fi
+    if [ $1 ]; then
+        open "https://github.com/${ORGANIZATION}/$1"
+    else
+        echo "$0: Please provide a valid repository"
+    fi
+}
+
+gimdo $1
