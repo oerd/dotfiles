@@ -137,6 +137,13 @@ install_dotfiles () {
   done
 }
 
+# Developer tools are required ()
+if test ! $(xcode-select -p)
+then
+  echo "  Installing Homebrew for you."
+  xcode-select --install
+fi
+
 setup_gitconfig
 install_dotfiles
 
