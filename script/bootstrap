@@ -137,10 +137,10 @@ install_dotfiles () {
   done
 }
 
-# Developer tools are required ()
+# Developer tools are required for some of the things we install
 if test ! $(xcode-select -p)
 then
-  echo "  Installing Homebrew for you."
+  echo "  Installing Xcode Developer Tools for you."
   xcode-select --install
 fi
 
