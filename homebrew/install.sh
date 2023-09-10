@@ -16,6 +16,22 @@ brew_install() {
   fi
 }
 
+# Brew is required
+if test ! $(which brew)
+then
+  echo "  Installing Homebrew for you."
+
+  # Install the correct homebrew for each OS type
+  if test "$(uname)" = "Darwin"
+  then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
+  then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/HEAD/install.sh)"
+  fi
+
+fi
+
 # Install `wget` with IRI support.
 brew_install wget
 brew_install fzf
@@ -40,6 +56,7 @@ brew_install jq
 brew_install yq
 brew_install awscli
 brew_install terraform
+brew_install mas
 
 
 # Install Casks
@@ -68,10 +85,21 @@ brew install --cask zed
 brew tap homebrew/cask-fonts
 
 ## install fonts
-brew install font-fira-mono-for-powerline
-brew install font-source-code-pro-for-powerline
+brew_install font-fira-mono-for-powerline
+brew_install font-source-code-pro-for-powerline
+brew_install font-fira-code-nerd-font
+brew_install font-anonymice-nerd-font
+brew_install font-jetbrains-mono-nerd-font
+brew_install font-jetbrains-mono-nerd-font
+brew_install font-sauce-code-pro-nerd-font
 
 ## install apps via the Mac App Store
+# requires mas-cli
+if test ! $(which mas)
+then
+  echo "  Installing Mac App Store (mas) cli for you."
+  brew_install mas
+fi
 mas install 882812218  #  Owly
 
 exit 0
