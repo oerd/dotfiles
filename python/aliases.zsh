@@ -1,1 +1,1 @@
-alias activate="source ./*/bin/activate"
+alias activate="source ./.*/bin/activate"
