@@ -15,6 +15,11 @@
 setopt HIST_IGNORE_ALL_DUPS
 
 #
+# Language env value
+#
+export LANG=en_US.UTF-8
+
+#
 # Input/output
 #
 
@@ -50,14 +55,12 @@ typeset -U config_files
 config_files=($ZSH/**/*.zsh)
 
 # load the path files
-for file in ${(M)config_files:#*/path.zsh}
-do
+for file in ${(M)config_files:#*/path.zsh}; do
   source $file
 done
 
 # load everything but the path and completion files
-for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
-do
+for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
   source $file
 done
 
@@ -66,18 +69,27 @@ autoload -U compinit
 compinit
 
 # load every completion after autocomplete loads
-for file in ${(M)config_files:#*/completion.zsh}
-do
+for file in ${(M)config_files:#*/completion.zsh}; do
   source $file
 done
 
 unset config_files
 
-# Better history
+# Better history (was retired in favor of Atuin)
 # Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search # Up
-bindkey "^[[B" down-line-or-beginning-search # Down
+# autoload -U up-line-or-beginning-search
+# autoload -U down-line-or-beginning-search
+# zle -N up-line-or-beginning-search
+# zle -N down-line-or-beginning-search
+# bindkey "^[[A" up-line-or-beginning-search # Up
+# bindkey "^[[B" down-line-or-beginning-search # Down
+
+# load Atuin
+eval "$(atuin init zsh)"
+
+
+#
+# Nix!
+#
+export NIX_CONF_DIR=$HOME/.config/nix
+export PATH=/run/current-system/sw/bin:$PATH

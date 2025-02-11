@@ -3,6 +3,9 @@ alias reload!='. ~/.zshrc'
 alias cls='clear' # Good 'ol Clear Screen command
 alias zshconfig="code ~/.zshrc"
 
+alias lt=tree
+alias cat=bat
+
 # These make things like `cd ...` go up three directories.
 alias -g      ...=../..
 alias -g     ....=../../..
