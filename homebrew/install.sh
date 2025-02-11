@@ -32,6 +32,12 @@ then
 
 fi
 
+#
+# Taps
+#
+brew tap FelixKratz/formulae # sketchybar
+brew tap nikitabobko/tap     # aerospace
+
 brew_install asdf
 brew_install bat
 brew_install fzf
@@ -51,35 +57,30 @@ brew_install screen
 brew_install ssh-copy-id
 brew_install starship
 brew_install terraform
-brew_install volta
+# brew_install volta
 brew_install wget
+brew install uv
 brew_install yq
 brew_install zsh
+brew install sketchybar
+brew install aerospace
 
 # Install Casks
 brew install --cask 1password
 brew install --cask brave-browser
 brew install --cask coconutbattery
 brew install --cask discord
-brew install --cask docker
-brew install --cask goland
-brew install --cask intellij-idea
+brew install --cask ghostty
 brew install --cask iterm2
 brew install --cask jetbrains-toolbox
-brew install --cask lastpass
 brew install --cask meetingbar
-brew install --cask monitorcontrol
-brew install --cask postman
-brew install --cask pycharm
+# brew install --cask monitorcontrol
+brew install --cask orbstack
 brew install --cask rectangle
 brew install --cask secretive
 brew install --cask slack
 brew install --cask sublime-text
-brew install --cask visual-studio-code
 brew install --cask zed
-
-## some common taps:
-brew tap homebrew/cask-fonts
 
 ## install fonts
 brew_install font-anonymice-nerd-font
@@ -97,6 +98,6 @@ then
   echo "  Installing Mac App Store (mas) cli for you."
   brew_install mas
 fi
-mas install 882812218  #  Owly
+mas install 882812218  #  Owly (example -- switched to Hammerspoon caffeine)
 
 exit 0
