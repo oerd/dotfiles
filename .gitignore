@@ -1,1 +1,5 @@
 git/gitconfig.local.symlink
+hammerspoon/Spoons/**
+!hammerspoon/Spoons/SpoonInstall.spoon
+!hammerspoon/Spoons/SpoonInstall.spoon/docs.json
+!hammerspoon/Spoons/SpoonInstall.spoon/init.lua
