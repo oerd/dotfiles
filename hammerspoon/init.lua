@@ -123,33 +123,41 @@ Install:andUse("LeftRightHotkey", {
         lrHotkey:bind({ "r⌘" }, "B", function()
             hs.application.launchOrFocus("Brave Browser")
         end)
-        --- PyCharm: right ⌘ + P
-        lrHotkey:bind({ "rCmd" }, "P", function()
-            hs.application.launchOrFocus("PyCharm")
-        end)
-        --- Ghostty: right ⌘ + B
+        --- Ghostty: right ⌘ + G
         lrHotkey:bind({ "rCmd" }, "G", function()
             hs.application.launchOrFocus("Ghostty")
-        end)
-        --- Zed: right ⌘ + Z
-        lrHotkey:bind({ "rCmd" }, "Z", function()
-            hs.application.launchOrFocus("Zed")
         end)
         --- Hammerspoon Console: right ⌘ + H
         lrHotkey:bind({ "rCmd" }, "H", function()
             hs.application.launchOrFocus("Hammerspoon")
         end)
+        --- Messages: right ⌘ + K
+        lrHotkey:bind({ "rCmd" }, "K", function()
+            hs.application.launchOrFocus("Keymapp")
+        end)
+        --- Messages: right ⌘ + M
+        lrHotkey:bind({ "rCmd" }, "M", function()
+            hs.application.launchOrFocus("Messages")
+        end)
         --- Obsidian: right ⌘ + O
         lrHotkey:bind({ "rCmd" }, "O", function()
             hs.application.launchOrFocus("Obsidian")
+        end)
+        --- PyCharm: right ⌘ + P
+        lrHotkey:bind({ "rCmd" }, "P", function()
+            hs.application.launchOrFocus("PyCharm")
+        end)
+        --- Ghostty: right ⌘ + S
+        lrHotkey:bind({ "rCmd" }, "S", function()
+            hs.application.launchOrFocus("Slack")
         end)
         --- Whasapp: right ⌘ + W
         lrHotkey:bind({ "rCmd" }, "W", function()
             hs.application.launchOrFocus("Whatsapp")
         end)
-        --- Messages: right ⌘ + M
-        lrHotkey:bind({ "rCmd" }, "M", function()
-            hs.application.launchOrFocus("Messages")
+        --- Zed: right ⌘ + Z
+        lrHotkey:bind({ "rCmd" }, "Z", function()
+            hs.application.launchOrFocus("Zed")
         end)
     end,
     start = true
