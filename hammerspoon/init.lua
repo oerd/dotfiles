@@ -4,10 +4,125 @@ hs.logger.defaultLogLevel = "info"
 
 -- some global variables (gh:zzamboni/dot-hammerspoon)
 local hyper               = { "cmd", "alt", "ctrl", "shift" }
-local meh                 = { "alt", "ctrl", "shift" }
 local ctrl_cmd            = { "cmd", "ctrl" }
-
 local col                 = hs.drawing.color.x11
+
+local spaces              = require("hs.spaces")
+local meh                 = { "alt", "ctrl", "shift" }
+
+-- Simple debugging function
+local function printSpaces()
+    local allSpaces = spaces.allSpaces()
+    local current = spaces.focusedSpace()
+
+    print("Current space: " .. current)
+    print("All spaces:")
+    for screen, screenSpaces in pairs(allSpaces) do
+        print("  Screen " .. screen .. ":")
+        for i, space in ipairs(screenSpaces) do
+            print("    Space " .. i .. ": " .. space .. (space == current and " (current)" or ""))
+        end
+    end
+end
+
+
+-- Helper function to find the screen ID containing the current space
+local function getCurrentScreenAndSpaces()
+    local currentSpace = spaces.focusedSpace()
+    local allSpaces = spaces.allSpaces()
+
+    for screenID, screenSpaces in pairs(allSpaces) do
+        for i, spaceID in ipairs(screenSpaces) do
+            if spaceID == currentSpace then
+                return screenID, screenSpaces, i
+            end
+        end
+    end
+
+    -- If we get here, we couldn't find the current space
+    return nil, nil, nil
+end
+
+
+-- Switch to a specific desktop number on the current screen
+local function switchToDesktop(desktopNumber)
+    local screenID, screenSpaces = getCurrentScreenAndSpaces()
+
+    if not screenID or not screenSpaces then
+        hs.alert.show("Could not determine current screen")
+        return
+    end
+
+    if desktopNumber > 0 and desktopNumber <= #screenSpaces then
+        local spaceID = screenSpaces[desktopNumber]
+        hs.alert.show("Switching to desktop " .. desktopNumber .. " (ID: " .. spaceID .. ")")
+        spaces.gotoSpace(spaceID)
+    else
+        hs.alert.show("Invalid desktop number: " .. desktopNumber .. ". Available: 1-" .. #screenSpaces)
+    end
+end
+
+-- Switch to the next desktop on the current screen
+local function switchToNextDesktop()
+    local screenID, screenSpaces, currentIndex = getCurrentScreenAndSpaces()
+
+    if not screenID or not screenSpaces or not currentIndex then
+        hs.alert.show("Could not determine current space")
+        return
+    end
+
+    -- Calculate next space index (wrap around to beginning if needed)
+    local nextIndex = currentIndex % #screenSpaces + 1
+    local nextSpaceID = screenSpaces[nextIndex]
+
+    hs.alert.show("Switching to next desktop: " .. nextIndex .. " (ID: " .. nextSpaceID .. ")")
+    spaces.gotoSpace(nextSpaceID)
+end
+
+-- Switch to the previous desktop on the current screen
+local function switchToPreviousDesktop()
+    local screenID, screenSpaces, currentIndex = getCurrentScreenAndSpaces()
+
+    if not screenID or not screenSpaces or not currentIndex then
+        hs.alert.show("Could not determine current space")
+        return
+    end
+
+    -- Calculate previous space index (wrap around to end if needed)
+    local prevIndex = (currentIndex - 2) % #screenSpaces + 1
+    local prevSpaceID = screenSpaces[prevIndex]
+
+    hs.alert.show("Switching to previous desktop: " .. prevIndex .. " (ID: " .. prevSpaceID .. ")")
+    spaces.gotoSpace(prevSpaceID)
+end
+
+-- Print spaces info when we reload config (for debugging)
+local function printSpaces()
+    local allSpaces = spaces.allSpaces()
+    local current = spaces.focusedSpace()
+
+    print("Current space: " .. current)
+    print("All spaces:")
+    for screen, screenSpaces in pairs(allSpaces) do
+        print("  Screen " .. screen .. ":")
+        for i, space in ipairs(screenSpaces) do
+            print("    Space " .. i .. ": " .. space .. (space == current and " (current)" or ""))
+        end
+    end
+end
+
+-- Optional: Print spaces info on startup
+printSpaces()
+
+-- Set up hotkeys
+hs.hotkey.bind(meh, "h", switchToPreviousDesktop)
+hs.hotkey.bind(meh, "l", switchToNextDesktop)
+hs.hotkey.bind(meh, "1", function() switchToDesktop(1) end)
+hs.hotkey.bind(meh, "2", function() switchToDesktop(2) end)
+hs.hotkey.bind(meh, "3", function() switchToDesktop(3) end)
+hs.hotkey.bind(meh, "4", function() switchToDesktop(4) end)
+hs.hotkey.bind(meh, "5", function() switchToDesktop(5) end)
+
 
 hs.loadSpoon("SpoonInstall")
 
@@ -183,7 +298,9 @@ Install:andUse("MiroWindowsManager", {
         right = { hyper, "l" },
         down = { hyper, "j" },
         left = { hyper, "h" },
-        fullscreen = { hyper, "f" }
+        fullscreen = { hyper, "f" },
+        nextscreen = { hyper, "n" },
+        nextwindow = { hyper, "w" },
     },
 })
 
