@@ -137,11 +137,14 @@ install_dotfiles () {
   done
 }
 
-# Developer tools are required for some of the things we install
-if test ! $(xcode-select -p)
+# If we're on a Mac, let's install devtools
+if [ "$(uname -s)" == "Darwin" ]
 then
-  echo "  Installing Xcode Developer Tools for you."
-  xcode-select --install
+    if test ! $(xcode-select -p)
+    then
+        echo "  Installing Xcode Developer Tools for you."
+        xcode-select --install
+    fi
 fi
 
 setup_gitconfig
