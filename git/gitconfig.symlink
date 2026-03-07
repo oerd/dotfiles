@@ -10,6 +10,8 @@
 	rank-contributors = !$ZSH/bin/git-rank-contributors
 	count   = !git shortlog -sn
 
+    fix-date = "!f() { GIT_COMMITTER_DATE=\"$1\" git commit --amend --date=\"$1\" --no-edit; }; f"
+
 	# Difftastic aliases, so `git dlog` is `git log` with difftastic and so on.
     dlog = -c diff.external=difft log --ext-diff
     dshow = -c diff.external=difft show --ext-diff

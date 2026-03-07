@@ -1,7 +1,7 @@
 theme = dark:Catppuccin Mocha,light:Catppuccin Latte
 
 font-family = Monaspace Krypton Frozen
-font-size  = 16
+font-size  = 14
 
 adjust-underline-position = 40%
 adjust-underline-thickness = -60%
