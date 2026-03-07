@@ -47,6 +47,7 @@ brew install zsh
 
 # Install GUI apps on MacOS
 if test "$(uname)" = "Darwin"
+    brew insall 1password-cli
 then
     # Install Casks
     brew install --cask 1password
