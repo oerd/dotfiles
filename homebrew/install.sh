@@ -5,35 +5,30 @@
 # This installs some of the common dependencies needed (or at least desired)
 # using Homebrew.
 
-# Brew is required
-if test ! $(which brew)
-then
-  echo "  Installing Homebrew for you."
-
-  # Install the correct homebrew for each OS type
-  if test "$(uname)" = "Darwin"
-  then
+# 1. Check for Homebrew, install if not present
+if test ! $(which brew); then
+    echo "Installing homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
-  then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/HEAD/install.sh)"
-  fi
-
 fi
 
-#
-# Taps
-#
-brew tap FelixKratz/formulae # sketchybar
-brew tap nikitabobko/tap     # aerospace
+# 2. Add Homebrew to PATH (needed for Apple Silicon)
+# For Apple Silicon
+if [ -f "/opt/homebrew/bin/brew" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+# For Intel Mac
+elif [ -f "/usr/local/bin/brew" ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+# For Linux
+elif [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
-brew insall 1password-cli
-brew install asdf
+# Install CLI apps
+brew install atuin
 brew install bat
 brew install fzf
 brew install gh
 brew install git
-brew install git-lfs
 brew install gnupg
 brew install grep
 brew install hashicorp/tap/terraform
@@ -42,7 +37,6 @@ brew install mas
 brew install ne
 brew install neovim
 brew install openssh
-brew install pyenv
 brew install screen
 brew install ssh-copy-id
 brew install starship
@@ -51,40 +45,33 @@ brew install uv
 brew install yq
 brew install zsh
 
-# Install Casks
-brew install --cask 1password
-brew install --cask brave-browser
-brew install --cask coconutbattery
-brew install --cask discord
-brew install --cask ghostty
-brew install --cask jetbrains-toolbox
-brew install --cask meetingbar
-# brew install --cask monitorcontrol
-brew install --cask orbstack
-brew install --cask rectangle
-brew install --cask secretive
-brew install --cask slack
-brew install --cask sublime-text
-brew install --cask zed
-
-## install fonts
-brew install font-anonymice-nerd-font
-brew install font-fira-code-nerd-font
-brew install font-fira-mono-for-powerline
-brew install font-jetbrains-mono-nerd-font
-brew install font-jetbrains-mono-nerd-font
-brew install font-sauce-code-pro-nerd-font
-brew install font-source-code-pro-for-powerline
-# Monaspace from Github-Next includes nerd-fonts
-brew install font-monaspace
-
-## install apps via the Mac App Store
-# requires mas-cli
-if test ! $(which mas)
+# Install GUI apps on MacOS
+if test "$(uname)" = "Darwin"
 then
-  echo "  Installing Mac App Store (mas) cli for you."
-  brew_install mas
+    # Install Casks
+    brew install --cask 1password
+    brew install --cask brave-browser
+    brew install --cask coconutbattery
+    brew install --cask discord
+    brew install --cask ghostty
+    brew install --cask jetbrains-toolbox
+    brew install --cask meetingbar
+    # brew install --cask monitorcontrol
+    brew install --cask orbstack
+    brew install --cask rectangle
+    brew install --cask secretive
+    brew install --cask slack
+    brew install --cask sublime-text
+    brew install --cask zed
+    ## install fonts
+    brew install font-anonymice-nerd-font
+    brew install font-fira-code-nerd-font
+    brew install font-fira-mono-for-powerline
+    brew install font-jetbrains-mono-nerd-font
+    brew install font-jetbrains-mono-nerd-font
+    brew install font-sauce-code-pro-nerd-font
+    brew install font-source-code-pro-for-powerline
+    # Monaspace from Github-Next includes nerd-fonts
+    brew install font-monaspace
 fi
-mas install 882812218  #  Owly (example -- switched to Hammerspoon caffeine)
-
 exit 0
