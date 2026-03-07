@@ -1,18 +1,9 @@
-# Start configuration added by Zim install {{{
-#
-# User configuration sourced by interactive shells
-#
+# shortcut to this dotfiles path is $ZSH
+export ZSH=$HOME/.dotfiles
+export XDG_CONFIG_HOME=$HOME/.config
 
-# -----------------
-# Zsh configuration
-# -----------------
-
-#
-# History
-#
-
-# Remove older command from the history if a duplicate is to be added.
-setopt HIST_IGNORE_ALL_DUPS
+# project folder that we can `c [tab]` to
+export PROJECTS=~/Code
 
 #
 # Language env value
@@ -35,13 +26,6 @@ bindkey -e
 # Remove path separator from WORDCHARS.
 WORDCHARS=${WORDCHARS//[\/]}
 
-# shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/.dotfiles
-export XDG_CONFIG_HOME=$HOME/.config
-
-# your project folder that we can `c [tab]` to
-export PROJECTS=~/Code
-
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
 # you'll have access to them in your scripts.
@@ -55,12 +39,14 @@ typeset -U config_files
 config_files=($ZSH/**/*.zsh)
 
 # load the path files
-for file in ${(M)config_files:#*/path.zsh}; do
+for file in ${(M)config_files:#*/path.zsh}
+do
   source $file
 done
 
 # load everything but the path and completion files
-for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
+for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
+do
   source $file
 done
 
@@ -69,27 +55,35 @@ autoload -U compinit
 compinit
 
 # load every completion after autocomplete loads
-for file in ${(M)config_files:#*/completion.zsh}; do
+for file in ${(M)config_files:#*/completion.zsh}
+do
   source $file
 done
 
 unset config_files
 
-# Better history (was retired in favor of Atuin)
-# Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
-# autoload -U up-line-or-beginning-search
-# autoload -U down-line-or-beginning-search
-# zle -N up-line-or-beginning-search
-# zle -N down-line-or-beginning-search
-# bindkey "^[[A" up-line-or-beginning-search # Up
-# bindkey "^[[B" down-line-or-beginning-search # Down
 
 # load Atuin
 eval "$(atuin init zsh)"
-
 
 #
 # Nix!
 #
 export NIX_CONF_DIR=$HOME/.config/nix
 export PATH=/run/current-system/sw/bin:$PATH
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/oerd/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+
+# bun completions
+[ -s "/Users/oerd/.bun/_bun" ] && source "/Users/oerd/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$PATH:$BUN_INSTALL/bin"
