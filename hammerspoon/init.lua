@@ -234,9 +234,21 @@ Install:andUse("LeftRightHotkey", {
     },
     -- works like a "callback" function for LeftRightHotkey
     fn = function(lrHotkey)
+        --- Andigravity: right ⌘ + A
+        lrHotkey:bind({ "r⌘" }, "A", function()
+            hs.application.launchOrFocus("Antigravity")
+        end)
         --- Brave: right ⌘ + B
         lrHotkey:bind({ "r⌘" }, "B", function()
             hs.application.launchOrFocus("Brave Browser")
+        end)
+        --- Codex: right ⌘ + C
+        lrHotkey:bind({ "r⌘" }, "C", function()
+            hs.application.launchOrFocus("Codex")
+        end)
+        --- Obsidian: right ⌘ + D
+        lrHotkey:bind({ "rCmd" }, "D", function()
+            hs.application.launchOrFocus("Orbstack")
         end)
         --- Ghostty: right ⌘ + G
         lrHotkey:bind({ "rCmd" }, "G", function()
@@ -262,9 +274,13 @@ Install:andUse("LeftRightHotkey", {
         lrHotkey:bind({ "rCmd" }, "P", function()
             hs.application.launchOrFocus("PyCharm")
         end)
-        --- Ghostty: right ⌘ + S
+        --- Slack: right ⌘ + S
         lrHotkey:bind({ "rCmd" }, "S", function()
             hs.application.launchOrFocus("Slack")
+        end)
+        --- Solot: right ⌘ + T
+        lrHotkey:bind({ "rCmd" }, "T", function()
+            hs.application.launchOrFocus("Solo")
         end)
         --- Whasapp: right ⌘ + W
         lrHotkey:bind({ "rCmd" }, "W", function()
