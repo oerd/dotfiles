@@ -4,9 +4,9 @@ function update_starship_config() {
 
 # For macOS: "defaults read -g AppleInterfaceStyle" returns "Dark" in dark mode.
 if [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]]; then
-    export STARSHIP_CONFIG="$HOME/.config/starship/starship-dark.toml"
+    export STARSHIP_CONFIG="$HOME/.dotfiles/starship/starship-dark.toml"
 else
-    export STARSHIP_CONFIG="$HOME/.config/starship/starship-light.toml"
+    export STARSHIP_CONFIG="$HOME/.dotfiles/starship/starship-light.toml"
 fi
 
 }
