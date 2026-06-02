@@ -274,6 +274,10 @@ Install:andUse("LeftRightHotkey", {
         lrHotkey:bind({ "rCmd" }, "P", function()
             hs.application.launchOrFocus("PyCharm")
         end)
+        --- Repo Prompt: right ⌘ + R
+        lrHotkey:bind({ "r⌘" }, "R", function()
+            hs.application.launchOrFocus("Repo Prompt")
+        end)
         --- Slack: right ⌘ + S
         lrHotkey:bind({ "rCmd" }, "S", function()
             hs.application.launchOrFocus("Slack")
