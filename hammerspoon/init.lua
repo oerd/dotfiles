@@ -299,6 +299,44 @@ Install:andUse("LeftRightHotkey", {
 })
 
 
+-- The MacBook "Dictation" (microphone) key is not F5. It is a Consumer Page
+-- Voice Command usage (0xCF). macOS handles that key itself and shows
+-- "Do you want to enable dictation?" before Hammerspoon ever sees an F5 event.
+-- Remap it to Keyboard F5 (0x3E) on Apple keyboards, then bind F5 as usual.
+-- A global hidutil --set does not stick on the built-in SPI keyboard.
+local function remapDictationKeyToF5()
+    local cmd = [[/usr/bin/hidutil property --matching '{"VendorID":0x5ac}' --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0xC000000CF,"HIDKeyboardModifierMappingDst":0x70000003E}]}']]
+    local output, ok = hs.execute(cmd)
+    if not ok then
+        hs.printf("hidutil remap Dictation→F5 failed: %s", output or "")
+    end
+end
+
+local function toggleMicrophoneMute()
+    local device = hs.audiodevice.defaultInputDevice()
+    if not device then
+        hs.alert.show("❌ No Input Device Found", 1.5)
+        return
+    end
+
+    -- :muted()/:setMuted() prefer output on combo devices and can miss the mic.
+    local isMuted = device:inputMuted()
+    if isMuted == nil then
+        hs.alert.show("❌ Input device cannot be muted", 1.5)
+        return
+    end
+
+    device:setInputMuted(not isMuted)
+    if not isMuted then
+        hs.alert.show("🎙️ Microphone MUTED ⛔️", 1.5)
+    else
+        hs.alert.show("🎙️ Microphone UNMUTED ✅", 1.5)
+    end
+end
+
+remapDictationKeyToF5()
+hs.hotkey.bind({}, "f5", toggleMicrophoneMute)
+
 ---
 --- Caffeine prevents sleep
 ---
