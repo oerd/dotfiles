@@ -53,9 +53,7 @@ then
     brew install --cask 1password
     brew install --cask brave-browser
     brew install --cask coconutbattery
-    brew install --cask discord
     brew install --cask ghostty
-    brew install --cask jetbrains-toolbox
     brew install --cask meetingbar
     # brew install --cask monitorcontrol
     brew install --cask orbstack
