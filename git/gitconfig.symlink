@@ -140,6 +140,7 @@
         default = simple
 [credential]
 	helper = osxkeychain
+	useHttpPath = true
 [init]
 	defaultBranch = main
 [pull]
