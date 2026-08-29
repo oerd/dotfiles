@@ -8,5 +8,3 @@ then
   alias ll="gls -l --color"
   alias la='gls -A --color'
 fi
-
-alias pi="bunx @mariozechner/pi-coding-agent"
